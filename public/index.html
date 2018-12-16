@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Avaliação de Perfil Comportamental</title>
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/5.5.8/firebase-app.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <script src="main.js"></script>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1 class="tittle">Características de Perfil Comportamental</h1>
+            </div>
+            <div class="col-xs-12">
+                <p class="paragraph">Cada um de nós possui uma série de pontos fortes que nos torna únicos e valiosos.
+                    Nós gostamos de
+                    ser reconhecidos pelos nossos pontos fortes e também de nos sentir eficazes
+                    em nosso ambiente. No entanto, qualquer ponto forte, quando utilizado excessivamente ou
+                    inapropriadamente, pode ser visto como um ponto fraco.
+                </p>
+            </div>
+            <div class="col-xs-12">
+                <p>Selecione seu sexo e dê uma olhada nas palavras que aparecem e assinale as que mais correspondem a
+                    você.</p>
+            </div>
+        </div>
+    </div>
+    <div class="container" id="opcoesSexo">
+        <div class="col-xs-12" onchange="showOptions()">
+            <label class="radio-inline">
+                <input type="radio" name="RadioSexoOptions" id="masculino" value="M"> Masculino
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="RadioSexoOptions" id="feminino" value="F"> Feminino
+            </label>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row" id="lista"> </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <br>
+                <div class="btn-group" role="group" aria-label="...">
+                    <button id="btnResponder" class="d-none" onclick="count()">Calcular Resultado</button>
+                    <button id="btnReiniciar" class="d-none" onclick="clearOptions()">Reiniciar</button>
+                    <button id="btnImprimir" class="d-none" onclick="imprimir()">Imprimir</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="d-none" role="alert" id="alert">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="d-none" id="resultados">
+        <div class="card" id="resultDominante">
+            <div class="card-header">
+                <h1>Dominante <span id="badgeDominante" class="badge badge-info"></span></h1>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">É direto diz o que pensa, impaciente,
+                    coloca as próprias opiniões como fatos,
+                    exigente, se irrita facilmente,
+                    foca no desfecho e resultado.</h5>
+                <p class="card-text">
+                    <ul>
+                        <li>Foco: PODER</li>
+                        <li>Motivadores: DIZER O QUE FAZER</li>
+                        <li>Medos: FALIR, NÃO DAR CERTO</li>
+                        <li>Estilo para questionamento: O QUE?</li>
+                        <li>Estilo de liderança: AUTORITÁRIO</li>
+                        <li>Linguagem emocional: ADMIRAÇÃO</li>
+                    </ul>
+                </p>
+
+                <h4>Comunicar-se com o Dominante</h4>
+                Seja direto e específico;
+                Assegure que ele"ganhe" aprecie disputar,
+                Não ser emocional, não dominar, não passar por cima dele;
+                Atuar rapidamente, ele decide rápido.
+                <h4>Para melhorar sua performance</h4>
+                Ser mais paciente; não tirar conclusões e agir apressadamente;
+                Ouvir mais os outros;
+                Ter mais consciência do seu impacto sobre os outros;
+            </div>
+        </div>
+        <div class="card" id="resultInfluente">
+            <div class="card-header">
+                <h1>Influente <span id="badgeInfluente" class="badge badge-info"></span></h1>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Adoram mudanças, gostam de pessoas
+                    e ambientes barulhentos, bem humorados
+                    e otimistas, impacientes e impulsivos.</h5>
+                <div class="card-text">
+                    <ul>
+                        <li>Foco: SOCIALIZAR </li>
+                        <li>Motivadores: RECONHECIMENTO</li>
+                        <li>Medos: REJEIÇÃO </li>
+                        <li>Estilo para questionamento: QUEM</li>
+                        <li>Estilo de liderança: DEMOCRÁTICO</li>
+                        <li>Linguagem emocional: ACEITAÇÃO E APROVAÇÃO </li>
+                    </ul>
+
+                    <h4>Comunicar-se com o Influente</h4>
+                    Seja amigo, não o ignore;
+                    Agende tempo para conversar;
+                    Divirta-se, fale sobre pessoas e sentimentos,
+                    faça com que se sinta único e especial.
+                    <h4>Para melhorar sua performance</h4>
+                    Falar menos, ouvir mais; não reagir emocionalmente,
+                    evitar promessas que não possa cumprir.
+                </div>
+            </div>
+        </div>
+        <div class="card" id="resultSeguro">
+            <div class="card-header">
+                <h1>Seguro <span id="badgeSeguro" class="badge badge-info"></span></h1>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">É um excelente companheiro de trabalho,
+                    deixa o ambiente harmônico,
+                    está sempre pronto a ajudar.</h5>
+                <div class="card-text">
+                    <ul>
+                        <li>Foco: PACIFICADOR </li>
+                        <li>Motivadores: BUSCAR SEGURANÇA, INCLUSÃO</li>
+                        <li>Medos: INSEGURANÇA, EXCLUSÃO</li>
+                        <li>Estilo para questionamento: POR QUE?</li>
+                        <li>Estilo de liderança: BASEADO EM ROTINA</li>
+                        <li>Linguagem emocional: APRECIAÇÃO E INTERESSE
+                            EM TUDO QUE FALA E FAZ</li>
+                    </ul>
+
+                    <h4>Comunicar-se com o Seguro</h4>
+                    Faça muitas perguntas, critique baseado em fatos
+                    não em opiniões, condicione á mudanças
+                    lentamente e com bases sólidas;
+                    <h4>Para melhorar sua performance</h4>
+                    Não ter receio de mudanças e coisas novas;
+                    Agir agora, pensar menos;
+                    Manter suas emoções sob controle;
+                    Ser mais ativo.
+                </div>
+            </div>
+        </div>
+        <div class="card" id="resultCauteloso">
+            <div class="card-header">
+                <h1>Cauteloso <span id="badgeCauteloso" class="badge badge-info"></span></h1>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Parece reservado, tímido, quieto,
+                    mantem o foco em detalhes,
+                    produz trabalho de alta qualidade.</h5>
+                <div class="card-text">
+                    <ul>
+                        <li>Foco: POLÍTICO</li>
+                        <li>Motivadores: POLITICAS E INFORMAÇÕES </li>
+                        <li> Medos: CONFLITOS, CAOS</li>
+                        <li>Estilo para questionamento: COMO</li>
+                        <li>Estilo de liderança: BASEADO EM CONHECIMENTO</li>
+                        <li>Linguagem emocional: AFIRMAÇÃO</li>
+                    </ul>
+                    <h4>Comunicar-se com o Cauteloso</h4>
+                    Evite tocar, seja paciente, forneça detalhes,
+                    não fale sobre assuntos pessoais, não pressione.
+                    <h4>Para melhorar sua performance</h4>
+                    Falar mais, decidir e entrar em ação mais rapidamente;
+                    Não ter receio de cometer erros;
+                    Não perder o panorama geral.
+                </div>
+            </div>
+        </div>
+    </div>
+
+<hr>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+</body>
+<footer div="page-footer font-small unique-color-dark fixed-bottom">
+    <div class="container unique-color-dark">
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <p><button class="btn btn-default" onclick="showTop()">Topo</button></p>
+                <blockquote class="blockquote">
+                    <p class="text-center">Baseado na palestra de <a href="mailto:contato@dhcoaching.net.br">Edína
+                            Esmeraldino</a> e desenvolvido por <a href="https://julianozanella.wordpress.com">Juliano
+                            Zanella</a></p>
+                </blockquote>
+                <p>Siga nas redes sociais:</p>
+                <ul class="list-unstyled list-inline text-center">
+                    <li class="list-inline-item">
+                        <button type="button" onclick="location.href='https://github.com/JulianoZanella'" class="btn btn-git"><i
+                                class="fa fa-github pr-1"></i> Github</button>
+                    </li>
+                    <li class="list-inline-item">
+                        <button type="button" onclick="location.href='https://www.linkedin.com/in/juliano-zanella/'"
+                            class="btn btn-li"><i class="fa fa-linkedin pr-1"></i> Linkedin</button> </li>
+                    <li class="list-inline-item">
+                        <button type="button" onclick="location.href='https://julianozanella.wordpress.com'" class="btn btn-li"><span
+                                class="glyphicon glyphicon-globe"></span> Wordpress</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright text-center py-3">© 2018 Copyright:
+        <a href="https://julianozanella.wordpress.com">Juliano Zanella</a>
+    </div>
+</footer>
+
+</html>
